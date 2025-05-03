@@ -165,8 +165,6 @@ export default function AuthPage() {
                     )}
                   />
 
-
-
                   <Button type="submit" className="w-full" disabled={registerMutation.isPending}>
                     {registerMutation.isPending ? (
                       <>
