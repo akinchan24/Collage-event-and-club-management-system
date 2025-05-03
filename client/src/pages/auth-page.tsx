@@ -18,17 +18,13 @@ import { Input } from "@/components/ui/input";
 import { Loader2, Calendar, Users, Award, Star } from "lucide-react";
 
 const loginSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  username: z.string().min(1, "Username is required"),
+  password: z.string(), // Any password is accepted
 });
 
 const registerSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-  confirmPassword: z.string(),
-}).refine(data => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
+  username: z.string().min(1, "Username is required"),
+  password: z.string(), // Any password is accepted
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -60,7 +56,6 @@ export default function AuthPage() {
     defaultValues: {
       username: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
@@ -170,19 +165,7 @@ export default function AuthPage() {
                     )}
                   />
 
-                  <FormField
-                    control={registerForm.control}
-                    name="confirmPassword"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Confirm Password</FormLabel>
-                        <FormControl>
-                          <Input type="password" placeholder="Confirm your password" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+
 
                   <Button type="submit" className="w-full" disabled={registerMutation.isPending}>
                     {registerMutation.isPending ? (

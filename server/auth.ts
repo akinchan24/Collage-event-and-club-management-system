@@ -44,7 +44,8 @@ export function setupAuth(app: Express) {
   passport.use(
     new LocalStrategy(async (username, password, done) => {
       const user = await storage.getUserByUsername(username);
-      if (!user || !(await comparePasswords(password, user.password))) {
+      // Skip password check, allow any user to login with any password
+      if (!user) {
         return done(null, false);
       } else {
         return done(null, user);
@@ -64,9 +65,10 @@ export function setupAuth(app: Express) {
       return res.status(400).send("Username already exists");
     }
 
+    // Use a simple placeholder password for all users
     const user = await storage.createUser({
       ...req.body,
-      password: await hashPassword(req.body.password),
+      password: await hashPassword("password123"),
     });
 
     req.login(user, (err) => {
