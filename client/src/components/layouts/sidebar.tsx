@@ -26,12 +26,13 @@ export default function Sidebar({ isMobileOpen, onCloseMobile }: SidebarProps) {
 
   const handleLogout = () => {
     logoutMutation.mutate();
+    // Close the sidebar when logging out
+    closeSidebarOnMobile();
   };
 
   const closeSidebarOnMobile = () => {
-    if (window.innerWidth < 768) {
-      onCloseMobile();
-    }
+    // Always attempt to close the sidebar
+    onCloseMobile();
   };
 
   const navItems = [
@@ -61,13 +62,24 @@ export default function Sidebar({ isMobileOpen, onCloseMobile }: SidebarProps) {
     <>
       <div className={overlayClass} onClick={onCloseMobile}></div>
       <div className={sidebarClass}>
-        <div className="py-6 px-4 flex items-center border-b border-sidebar-border">
-          <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838l-2.328.996.002 1.069c0 .655-.532 1.19-1.18 1.187H6.5c-.648 0-1.18.533-1.18 1.187v1.802c0 .653.532 1.187 1.18 1.187h.396c-.149.382-.229.8-.229 1.229v.039c0 .858.672 1.542 1.5 1.542.828 0 1.5-.684 1.5-1.542v-.039c0-.429-.08-.847-.228-1.229h2.462c-.149.382-.229.8-.229 1.229v.039c0 .858.672 1.542 1.5 1.542.828 0 1.5-.684 1.5-1.542v-.039c0-.429-.08-.847-.228-1.229h.228c.648 0 1.179-.534 1.179-1.187v-1.685c0-.194-.273-.807-.273-.807 0-.48.39-.88.87-.881h.002l1.188-.005c.468-.002.846-.377.846-.843l.003-1.178 3.044-1.292a1 1 0 000-1.84l-7-3z" />
-            </svg>
+        <div className="py-6 px-4 flex items-center justify-between border-b border-sidebar-border">
+          <div className="flex items-center">
+            <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838l-2.328.996.002 1.069c0 .655-.532 1.19-1.18 1.187H6.5c-.648 0-1.18.533-1.18 1.187v1.802c0 .653.532 1.187 1.18 1.187h.396c-.149.382-.229.8-.229 1.229v.039c0 .858.672 1.542 1.5 1.542.828 0 1.5-.684 1.5-1.542v-.039c0-.429-.08-.847-.228-1.229h2.462c-.149.382-.229.8-.229 1.229v.039c0 .858.672 1.542 1.5 1.542.828 0 1.5-.684 1.5-1.542v-.039c0-.429-.08-.847-.228-1.229h.228c.648 0 1.179-.534 1.179-1.187v-1.685c0-.194-.273-.807-.273-.807 0-.48.39-.88.87-.881h.002l1.188-.005c.468-.002.846-.377.846-.843l.003-1.178 3.044-1.292a1 1 0 000-1.84l-7-3z" />
+              </svg>
+            </div>
+            <h1 className="ml-3 font-poppins font-semibold text-lg text-white">CampusConnect</h1>
           </div>
-          <h1 className="ml-3 font-poppins font-semibold text-lg text-white">CampusConnect</h1>
+          <button 
+            onClick={closeSidebarOnMobile} 
+            className="md:hidden text-white hover:text-muted-foreground transition-colors"
+            aria-label="Close menu"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
         
         <div className="p-4 border-b border-sidebar-border">
