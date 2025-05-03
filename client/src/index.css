@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 7% 17%;
+    --foreground: 220 13% 95%;
+    --card: 220 13% 9%;
+    --card-foreground: 220 13% 95%;
+    --popover: 220 13% 9%;
+    --popover-foreground: 220 13% 95%;
+    --primary: 244 90% 66%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 13% 23%;
+    --muted-foreground: 220 10% 80%;
+    --accent: 264 64% 64%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 23%;
+    --input: 220 13% 23%;
+    --ring: 244 90% 66%;
+    --radius: 0.5rem;
+    
+    /* Chart colors */
+    --chart-1: 244 90% 66%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 264 64% 64%;
+    --chart-4: 0 84% 60%;
+    --chart-5: 152 76% 40%;
+    
+    /* Sidebar specific colors */
+    --sidebar-background: 220 13% 9%;
+    --sidebar-foreground: 220 13% 95%;
+    --sidebar-primary: 244 90% 66%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 264 64% 64%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 13% 23%;
+    --sidebar-ring: 244 90% 66%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-montserrat antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-semibold;
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-md;
+  }
+  
+  /* Transitions */
+  .sidebar-item {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .sidebar-item:hover {
+    @apply bg-primary/10 pl-6;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .card-hover:hover {
+    @apply transform -translate-y-1 shadow-lg;
+  }
+}
